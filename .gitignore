@@ -1,0 +1,17 @@
+# Build results
+dist/
+src/_includes/webpack.njk
+
+# Visual Studio
+.vscode/
+
+# Package managers
+node_modules/
+.npm
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

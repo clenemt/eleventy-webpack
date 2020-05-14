@@ -1,0 +1,13 @@
+# https://github.com/browserslist/browserslist#readme
+# based on https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/package.json
+
+[production]
+>0.2%
+not dead
+not op_mini all
+
+# Faster build time in development
+[development]
+last 1 chrome version
+last 1 firefox version
+last 1 safari version
