@@ -1,4 +1,4 @@
-# eleventy-webpack
+# eleventy-webpack :balloon:
 
 A no crust Eleventy and Webpack template. Fork and go.
 
