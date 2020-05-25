@@ -1,0 +1,7 @@
+name: eleventy-webpack
+title: eleventy-webpack
+# see https://ogp.me/#types
+type: website
+url: https://github.com/clenemt/eleventy-webpack
+image: https://avatars3.githubusercontent.com/u/447956?s=400&v=4
+description: A no crust Eleventy and Webpack boilerplate 🎈.

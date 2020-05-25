@@ -1,1 +1,1 @@
-const foo = (() => Promise.resolve().then(() => console.log('working')))();
+const foo = (() => Promise.resolve().then(() => console.log('Hello world')))();

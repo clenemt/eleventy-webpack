@@ -2,6 +2,8 @@
 
 A no crust Eleventy and Webpack template. Fork and go.
 
+![](https://user-images.githubusercontent.com/447956/82833092-1220be80-9e8b-11ea-8fd4-7c33f74530f2.png)
+
 ## Included
 
 * Barebone [Eleventy](https://www.11ty.dev/) (literally :scream:)

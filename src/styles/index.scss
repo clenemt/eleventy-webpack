@@ -1,2 +1,19 @@
-$red: red;
-h1 { color: $red; }
+$blue: darkslateblue;
+$bg-body: antiquewhite;
+
+html,
+body {
+  height: 100%;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+body {
+  background-color: $bg-body;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  color: $blue;
+}

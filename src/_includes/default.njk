@@ -1,9 +1,9 @@
-<!doctype html>
-<html lang="en-US">
+<!DOCTYPE html>
+<html class="{{ htmlClass }}" lang="">
   <head>
     {% include "head.njk" %}
   </head>
-  <body>
+  <body class="{{ bodyClass }}">
     {{ content | safe }}
   </body>
 </html>
