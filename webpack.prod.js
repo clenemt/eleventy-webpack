@@ -11,7 +11,7 @@ module.exports = merge(dev, {
   optimization: {
     minimizer: [
       new TerserPlugin({
-        sourceMap: true,
+        sourceMap: true
       }),
       new OptimizeCssAssetsPlugin({
         cssProcessorOptions: { map: true }

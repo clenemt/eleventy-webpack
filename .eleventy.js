@@ -8,9 +8,9 @@ module.exports = (config) => {
 
   // Allow eleventy to understand yaml files
   // mostly because we want comments support in data file.
-  config.addDataExtension('yaml', (contents) => yaml.safeLoad(contents));
+  config.addDataExtension('yml', (contents) => yaml.safeLoad(contents));
 
-  // Minify eleventy HTML in production
+  // Minify eleventy pages in production
   if (process.env.NODE_ENV === 'production') {
     config.addTransform('html-min', (content, outputPath) =>
       outputPath.endsWith('.html')

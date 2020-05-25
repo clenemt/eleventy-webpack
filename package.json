@@ -2,7 +2,7 @@
   "license": "MIT",
   "name": "eleventy-webpack",
   "scripts": {
-    "format": "prettier --write src/scripts/* src/styles/*",
+    "format": "prettier --write \"**/*.{js,s?css,yml}\" \"!dist\" ",
     "start": "cross-env NODE_ENV=development run-p -l start:*",
     "start:webpack": "webpack --config webpack.dev.js ",
     "start:eleventy": "eleventy --serve",
@@ -33,6 +33,7 @@
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "postcss-loader": "^3.0.0",
     "postcss-preset-env": "^6.7.0",
+    "prettier": "^2.0.5",
     "rimraf": "^3.0.2",
     "sass-loader": "^8.0.2",
     "source-map-explorer": "^2.4.2",
