@@ -6,13 +6,13 @@ A barebone Eleventy and Webpack template. Fork and go.
 
 ## Included
 
-* Barebone [Eleventy](https://www.11ty.dev/) (literally :scream:)
-* [Live reload](https://www.browsersync.io/docs)
-* Fast build with per env configs ([babel-env](https://babeljs.io/docs/en/babel-preset-env), [postcss-preset-env](https://github.com/csstools/postcss-preset-env), [webpack](https://webpack.js.org/configuration/#use-different-configuration-file))
-* `.js` with sourcemaps and ES2020 syntax
-* `.s?css` with sourcemaps and autoprefixer
-* [Babel polyfills](https://babeljs.io/docs/en/babel-preset-env#usebuiltins) (production only)
-* [Prettier](https://prettier.io/)
+- Barebone [Eleventy](https://www.11ty.dev/) (literally :scream:)
+- [Live reload](https://www.browsersync.io/docs)
+- Fast build with per env configs ([babel-env](https://babeljs.io/docs/en/babel-preset-env), [postcss-preset-env](https://github.com/csstools/postcss-preset-env), [webpack](https://webpack.js.org/configuration/#use-different-configuration-file))
+- `.js` with sourcemaps and ES2020 syntax
+- `.s?css` with sourcemaps and autoprefixer
+- [Babel polyfills](https://babeljs.io/docs/en/babel-preset-env#usebuiltins) (production only)
+- [Prettier](https://prettier.io/)
 
 ## eli5 (explain like i'm 5)
 
@@ -39,7 +39,7 @@ Then you can:
 | --------------------- | -------------------------------------------- |
 | **`npm run start`**   | Run your website on http://localhost:8080    |
 | **`npm run build`**   | Build your production website inside `/dist` |
-| **`npm run format`**  | Run prettier on `scripts/*` `and styles/*`   |
+| **`npm run format`**  | Run prettier on all filles except `/dist`    |
 | **`npm run analyze`** | Output info on your bundle size              |
 
 That's it.
