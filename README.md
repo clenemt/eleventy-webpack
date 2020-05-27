@@ -1,6 +1,6 @@
 # eleventy-webpack :balloon:
 
-A barebone [eleventy](https://www.11ty.dev/) and [webpack](https://webpack.js.org/) template.
+A barebone [eleventy](https://www.11ty.dev/) and [webpack](https://webpack.js.org/) template. Fork and go.
 
 ![](https://user-images.githubusercontent.com/447956/82975961-e47f6680-9fab-11ea-9c5c-cdfb6ef2932c.png)
 
@@ -41,7 +41,7 @@ Webpack is used when:
 1. The new files are appended to the ignored file `_includes/webpack.njk` thanks to [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin).
 1. Eleventy sees the new `_includes/webpack.njk` and rebuild.
 
-Any other changes is picked up normally by Eleventy (see [./.eleventy.js](blob/master/.eleventy.js))
+Any other changes is picked up normally by Eleventy (see [.eleventy.js](.eleventy.js))
 
 ## Thanks
 
