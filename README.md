@@ -1,6 +1,6 @@
 # eleventy-webpack :balloon:
 
-A barebone Eleventy and Webpack template. Fork and go.
+A barebone [eleventy](https://www.11ty.dev/) and [webpack](https://webpack.js.org/) template. Fork and go.
 
 ![](https://user-images.githubusercontent.com/447956/82975961-e47f6680-9fab-11ea-9c5c-cdfb6ef2932c.png)
 
