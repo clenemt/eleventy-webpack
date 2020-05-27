@@ -4,6 +4,7 @@ $bg-body: antiquewhite;
 html,
 body {
   height: 100%;
+  margin: 0;
   font-family: 'Courier New', Courier, monospace;
 }
 
@@ -16,4 +17,9 @@ body {
 
 h1 {
   color: $blue;
+}
+
+img {
+  width: 15vw;
+  max-width: 6.25rem;
 }

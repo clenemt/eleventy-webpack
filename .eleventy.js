@@ -10,6 +10,11 @@ module.exports = (config) => {
   // mostly because we want comments support in data file.
   config.addDataExtension('yml', (contents) => yaml.safeLoad(contents));
 
+  // Pass-through files
+  config.addPassthroughCopy('src/robots.txt');
+  config.addPassthroughCopy('src/favicon.ico');
+  config.addPassthroughCopy('src/assets/images');
+
   // Minify eleventy pages in production
   if (process.env.NODE_ENV === 'production') {
     config.addTransform('html-min', (content, outputPath) =>
