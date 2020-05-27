@@ -1,6 +1,6 @@
 # eleventy-webpack :balloon:
 
-A barebone [eleventy](https://www.11ty.dev/) and [webpack](https://webpack.js.org/) template. Fork and go.
+A barebone [eleventy](https://www.11ty.dev/) and [webpack](https://webpack.js.org/) template.
 
 ![](https://user-images.githubusercontent.com/447956/82975961-e47f6680-9fab-11ea-9c5c-cdfb6ef2932c.png)
 
@@ -11,6 +11,8 @@ A barebone [eleventy](https://www.11ty.dev/) and [webpack](https://webpack.js.or
 - `.js` (ES6, Babel and its polyfills)
 - `.css` (Sass, Autoprefixer)
 - [Prettier](https://prettier.io/) for formatting
+
+Live demo https://eleventy-webpack.netlify.app
 
 ## Usage
 
