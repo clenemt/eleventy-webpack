@@ -6,12 +6,11 @@ A barebone [eleventy](https://www.11ty.dev/) and [webpack](https://webpack.js.or
 
 ## Included
 
-- Barebone [Eleventy](https://www.11ty.dev/) (literally :scream:)
-- Fast build with per env configs ([babel-env](https://babeljs.io/docs/en/babel-preset-env), [postcss-preset-env](https://github.com/csstools/postcss-preset-env), [webpack](https://webpack.js.org/configuration/#use-different-configuration-file))
-- `.js` with sourcemaps and ES2020 syntax
-- `.s?css` with sourcemaps and autoprefixer
-- [Babel polyfills](https://babeljs.io/docs/en/babel-preset-env#usebuiltins) (production only)
-- [Prettier](https://prettier.io/)
+- Barebone eleventy (literally :scream:)
+- Fast build with per env configs ([babel-env](https://babeljs.io/docs/en/babel-preset-env), [postcss-preset-env](https://github.com/csstools/postcss-preset-env), [webpack](https://webpack.js.org/configuration/#use-different-configuration-file)...)
+- `.js` (ES6, Babel and its polyfills)
+- `.css` (Sass, Autoprefixer)
+- [Prettier](https://prettier.io/) for formatting
 
 ## Usage
 
@@ -44,7 +43,7 @@ Any other changes is picked up normally by Eleventy (see [./.eleventy.js](blob/m
 
 ## Thanks
 
+- https://github.com/maxboeck/mxb
 - https://github.com/ianrose/deventy
 - https://github.com/planetoftheweb/seven
 - https://github.com/scottwater/eleventy-origin
-- https://github.com/maxboeck/mxb
