@@ -7,8 +7,9 @@ module.exports = {
   mode: 'development',
   watch: true,
   stats: { colors: true },
-  // Can't use faster eval due to a bug with MiniCssExtractPlugin
-  // see https://github.com/webpack-contrib/mini-css-extract-plugin/issues/29
+  // Eval does not work for css source maps
+  // `All values enable source map generation except eval and false value.`
+  // https://github.com/webpack-contrib/css-loader
   devtool: 'cheap-module-source-map',
   entry: [
     path.resolve(__dirname, 'src/assets/scripts/index.js'),
@@ -16,7 +17,7 @@ module.exports = {
   ],
   output: {
     filename: '[name].js',
-    path: path.resolve(__dirname, 'dist/assets'),
+    path: path.resolve(__dirname, '_site/assets'),
     publicPath: '/assets/'
   },
   plugins: [
@@ -45,18 +46,13 @@ module.exports = {
         test: /\.s?css/i,
         use: [
           MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            // Does not respect devtools option
-            // https://github.com/webpack-contrib/css-loader/issues/622
-            options: { sourceMap: true }
-          },
+          'css-loader',
           {
             loader: 'postcss-loader',
             options: {
-              plugins: () => [PostCSSPresetEnv],
-              // Does not respect devtools option
-              sourceMap: true
+              postcssOptions: {
+                plugins: [PostCSSPresetEnv]
+              }
             }
           },
           'sass-loader'

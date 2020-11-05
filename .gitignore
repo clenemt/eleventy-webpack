@@ -1,5 +1,5 @@
 # Build results
-dist/
+_site/
 src/_includes/webpack.njk
 
 # Visual Studio

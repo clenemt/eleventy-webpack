@@ -8,12 +8,11 @@ A barebone [eleventy](https://www.11ty.dev/) and [webpack](https://webpack.js.or
 
 - Barebone [11ty](https://www.11ty.dev/) (literally :scream:)
 - Fast build with per env configs ([babel-env](https://babeljs.io/docs/en/babel-preset-env), [postcss-preset-env](https://github.com/csstools/postcss-preset-env), [webpack](https://webpack.js.org/configuration/#use-different-configuration-file)...)
-- `.js` (ES6, Babel and its polyfills)
-- `.css` (Sass, Autoprefixer)
-- Optimized for production
+- `.js` (ES6, Babel, Polyfills)
+- `.css` (Sass, PostCSS, Autoprefixer)
+- Optimized for production (source maps and minified code)
 - SEO metadata and Open Graph tags
 - [Prettier](https://prettier.io/) for formatting
-- [Netlify CMS](https://www.netlifycms.org/) (optional)
 
 Live demo https://eleventy-webpack.netlify.app
 
@@ -30,8 +29,8 @@ Then you can:
 | Command               | Description                                  |
 | --------------------- | -------------------------------------------- |
 | **`npm run start`**   | Run your website on http://localhost:8080    |
-| **`npm run build`**   | Build your production website inside `/dist` |
-| **`npm run format`**  | Run prettier on all filles except `/dist`    |
+| **`npm run build`**   | Build your production website inside `/_site` |
+| **`npm run format`**  | Run prettier on all filles except `/_site`    |
 | **`npm run analyze`** | Output info on your bundle size              |
 
 That's it.
@@ -46,14 +45,9 @@ Webpack is used when:
 
 Any other changes is picked up normally by Eleventy (see [.eleventy.js](.eleventy.js))
 
-## TODO
+## License
 
-* Minify images with imageoptim
-* Lazyload images with eleventy-plugin-lazyimages
-* Add Sitemap and robots
-* Add CMS
-* Add 404
-* Add license
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Thanks
 

@@ -8,15 +8,14 @@ body {
   font-family: 'Courier New', Courier, monospace;
 }
 
+// A general comment that should be
+// stripped out in production
 body {
+  color: $blue;
   background-color: $bg-body;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-h1 {
-  color: $blue;
 }
 
 img {

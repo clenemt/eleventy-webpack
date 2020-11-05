@@ -2,16 +2,16 @@
   "license": "MIT",
   "name": "eleventy-webpack",
   "scripts": {
-    "format": "prettier --write **/*.{js,s?css,yml} !dist",
+    "format": "prettier --write **/*.{js,s?css,yml} !_site",
     "start": "cross-env NODE_ENV=development run-p -l start:*",
     "start:webpack": "webpack --config webpack.dev.js ",
     "start:eleventy": "eleventy --serve",
     "build": "cross-env NODE_ENV=production run-s -l build:*",
-    "build:clean": "rimraf dist",
+    "build:clean": "rimraf _site",
     "build:webpack": "webpack --config webpack.prod.js",
     "build:eleventy": "eleventy",
     "analyze": "run-s build analyze:*",
-    "analyze:js": "source-map-explorer dist/**/*.js dist/**/*.js.map"
+    "analyze:js": "source-map-explorer _site/**/*.js _site/**/*.js.map"
   },
   "devDependencies": {
     "@11ty/eleventy": "^0.11.1",
@@ -27,6 +27,10 @@
     "html-minifier": "^4.0.0",
     "html-webpack-plugin": "^4.5.0",
     "js-yaml": "^3.14.0",
+    "markdown-it": "^12.0.2",
+    "markdown-it-anchor": "^6.0.0",
+    "markdown-it-attrs": "^3.0.3",
+    "markdown-it-container": "^3.0.0",
     "mini-css-extract-plugin": "^1.2.1",
     "node-sass": "^5.0.0",
     "npm-run-all": "^4.1.5",
@@ -40,5 +44,6 @@
     "webpack": "^5.4.0",
     "webpack-cli": "^4.2.0",
     "webpack-merge": "^5.3.0"
-  }
+  },
+  "dependencies": {}
 }
