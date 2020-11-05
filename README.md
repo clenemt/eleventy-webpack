@@ -15,6 +15,7 @@ A barebone [eleventy](https://www.11ty.dev/) and [webpack](https://webpack.js.or
 - :white_check_mark: Optimized for production (source maps and minified code)
 - :robot: SEO metadata and Open Graph tags
 - :art: [Prettier](https://prettier.io/) for formatting
+- :shipit: Error overlay ([eleventy-plugin-error-overlay](https://github.com/stevenpetryk/eleventy-plugin-error-overlay))
 
 Live demo https://eleventy-webpack.netlify.app
 
@@ -46,10 +47,6 @@ Webpack is used when:
 1. Eleventy sees the new `_includes/webpack.njk` and rebuild.
 
 Any other changes is picked up normally by Eleventy (see [.eleventy.js](.eleventy.js))
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Thanks
 

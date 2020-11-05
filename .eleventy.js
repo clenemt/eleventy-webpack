@@ -2,6 +2,7 @@ const fs = require('fs');
 const yaml = require('js-yaml');
 const htmlmin = require('html-minifier');
 const markdownIt = require('markdown-it');
+const ErrorOverlay = require("eleventy-plugin-error-overlay")
 const markdownItAnchor = require('markdown-it-anchor');
 const markdownItContainer = require('markdown-it-container');
 const markdownItAttributes = require('markdown-it-attrs');
@@ -15,8 +16,12 @@ module.exports = (config) => {
   // mostly because we want comments support in data file.
   config.addDataExtension('yml', (contents) => yaml.safeLoad(contents));
 
+  // Shows error name, message, and fancy stacktrace
+  config.addPlugin(ErrorOverlay)
+
   // Allow for customizing the built in markdown parser
   // We add more natural line breaks and anchor tag for headers
+  // but also the `:::` container syntax and attributes to allow for **foo** {.bar}
   config.setLibrary(
     'md',
     markdownIt({ html: true, breaks: true })
@@ -33,6 +38,7 @@ module.exports = (config) => {
 
   // BrowserSync Overrides
   config.setBrowserSyncConfig({
+    ...config.browserSyncConfig,
     callbacks: {
       ready: function (err, browserSync) {
         // Show 404 page without redirect to 404.html

@@ -23,6 +23,7 @@
     "core-js": "^3.6.5",
     "cross-env": "^7.0.2",
     "css-loader": "^5.0.1",
+    "eleventy-plugin-error-overlay": "^0.1.2",
     "file-loader": "^6.2.0",
     "html-minifier": "^4.0.0",
     "html-webpack-plugin": "^4.5.0",
