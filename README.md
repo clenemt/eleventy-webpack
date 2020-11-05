@@ -2,17 +2,19 @@
 
 A barebone [eleventy](https://www.11ty.dev/) and [webpack](https://webpack.js.org/) template. Fork and go.
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/c952af3b-547a-40a6-a999-a7966a846b2c/deploy-status)](https://app.netlify.com/sites/eleventy-webpack/deploys)
+
 ![](https://user-images.githubusercontent.com/447956/82975961-e47f6680-9fab-11ea-9c5c-cdfb6ef2932c.png)
 
-## Included
+## Features
 
-- Barebone [11ty](https://www.11ty.dev/) (literally :scream:)
-- Fast build with per env configs ([babel-env](https://babeljs.io/docs/en/babel-preset-env), [postcss-preset-env](https://github.com/csstools/postcss-preset-env), [webpack](https://webpack.js.org/configuration/#use-different-configuration-file)...)
+- :fire: Barebone [11ty](https://www.11ty.dev/) (literally :scream:)
+- :zap: Fast build with per env configs ([babel-env](https://babeljs.io/docs/en/babel-preset-env), [postcss-preset-env](https://github.com/csstools/postcss-preset-env), [webpack](https://webpack.js.org/configuration/#use-different-configuration-file)...)
 - `.js` (ES6, Babel, Polyfills)
 - `.css` (Sass, PostCSS, Autoprefixer)
-- Optimized for production (source maps and minified code)
-- SEO metadata and Open Graph tags
-- [Prettier](https://prettier.io/) for formatting
+- :white_check_mark: Optimized for production (source maps and minified code)
+- :robot: SEO metadata and Open Graph tags
+- :art: [Prettier](https://prettier.io/) for formatting
 
 Live demo https://eleventy-webpack.netlify.app
 
