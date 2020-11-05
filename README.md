@@ -6,11 +6,14 @@ A barebone [eleventy](https://www.11ty.dev/) and [webpack](https://webpack.js.or
 
 ## Included
 
-- Barebone eleventy (literally :scream:)
+- Barebone [11ty](https://www.11ty.dev/) (literally :scream:)
 - Fast build with per env configs ([babel-env](https://babeljs.io/docs/en/babel-preset-env), [postcss-preset-env](https://github.com/csstools/postcss-preset-env), [webpack](https://webpack.js.org/configuration/#use-different-configuration-file)...)
 - `.js` (ES6, Babel and its polyfills)
 - `.css` (Sass, Autoprefixer)
+- Optimized for production
+- SEO metadata and Open Graph tags
 - [Prettier](https://prettier.io/) for formatting
+- [Netlify CMS](https://www.netlifycms.org/) (optional)
 
 Live demo https://eleventy-webpack.netlify.app
 
@@ -43,9 +46,22 @@ Webpack is used when:
 
 Any other changes is picked up normally by Eleventy (see [.eleventy.js](.eleventy.js))
 
+## TODO
+
+* Minify images with imageoptim
+* Lazyload images with eleventy-plugin-lazyimages
+* Add Sitemap and robots
+* Add CMS
+* Add 404
+* Add license
+
 ## Thanks
 
 - https://github.com/maxboeck/mxb
 - https://github.com/ianrose/deventy
 - https://github.com/planetoftheweb/seven
 - https://github.com/scottwater/eleventy-origin
+- https://github.com/surjithctly/neat-starter
+- https://github.com/ixartz/Eleventy-Starter-Boilerplate
+- https://github.com/google/eleventy-high-performance-blog
+- https://github.com/danurbanowicz/eleventy-netlify-boilerplate
