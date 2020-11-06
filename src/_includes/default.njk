@@ -1,9 +1,32 @@
 <!DOCTYPE html>
 <html class="{{ htmlClass }}" lang="{{ site.lang }}">
   <head>
-    {% include "head.njk" %}
+    <meta charset="utf-8">
+    <title>{{ title or site.title or site.name }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{ description or site.description }}">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+
+    {# Open graph related #}
+    <meta property="og:title" content="{{ title or site.title or site.name }}" />
+    <meta property="og:type" content="{{ type or site.type }}" />
+    <meta property="og:url" content="{{ url or site.url }}" />
+    <meta property="og:image" content="{{ image or site.image }}" />
+    <meta property="og:site_name" content="{{ name or site.name }}" />
+    <meta property="og:description" content="{{ description or site.description }}" />
+
+    {% include "webpack.njk" %}
   </head>
   <body class="{{ bodyClass }}">
-    {{ content | safe }}
+    {# Add the spritesheet #}
+    <div hidden>{% iconsprite %}</div>
+
+    <main>
+      {{ content | safe }}
+    </main>
+
+    <footer>
+      <p><a href="{{ site.url }}">{% icon "github" %}eleventy-webpack</a> - <time datetime="{{ page.date | htmlDateString }}">{{ page.date | readableDate }}</time></p>
+    </footer>
   </body>
 </html>

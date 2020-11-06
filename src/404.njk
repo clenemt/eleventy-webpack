@@ -6,7 +6,9 @@ description: Page not found
 eleventyExcludeFromCollections: true
 ---
 <div>
-  <h1>Page not found</h1>
-  <p>Go <a href="/">home</a></p>
-  <img  src="/assets/images/eleventy_logo.png" alt="The possum is Eleventy’s mascot">
+  {% markdown %}
+  # Page not found
+  Go [home](/){style="font-weight: bold"}
+  {% endmarkdown %}
 </div>
+<img  src="https://www.11ty.dev/img/possum-balloon-original.webp" alt="The possum is Eleventy’s mascot">

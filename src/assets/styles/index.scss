@@ -15,10 +15,30 @@ body {
   background-color: $bg-body;
   display: flex;
   align-items: center;
-  justify-content: center;
+  flex-direction: column;
+}
+
+main {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+
+  img { width: 6rem; }
 }
 
 img {
-  width: 15vw;
-  max-width: 6.25rem;
+  max-width: 100%;
+  height: auto;
+}
+
+// Used by the icon shortcode
+.icon {
+  display: inline-block;
+  height: 1em;
+  width: 1em;
+  margin-right: .25em;
+  vertical-align: middle;
+  font-size: 1.5em;
+  fill: currentColor;
+  pointer-events: none;
 }
