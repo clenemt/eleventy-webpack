@@ -12,9 +12,6 @@ const iconsprite = require('./iconsprite');
 
 module.exports = (config) => {
   const manifestPath = path.resolve(__dirname, '_site/assets/manifest.json');
-  const manifest = JSON.parse(
-    fs.readFileSync(manifestPath, { encoding: 'utf8' })
-  );
 
   // Allow for customizing the built in markdown parser
   // We add more natural line breaks and anchor tag for headers
@@ -48,9 +45,17 @@ module.exports = (config) => {
   );
 
   // Shortcodes
-  config.addShortcode('webpack', (name) => manifest[name]);
   config.addPairedShortcode('markdown', (content) => markdown.render(content));
   config.addNunjucksAsyncShortcode('iconsprite', iconsprite);
+  config.addNunjucksAsyncShortcode(
+    'webpack',
+    (name) =>
+      new Promise((resolve) => {
+        fs.readFile(manifestPath, { encoding: 'utf8' }, (err, data) =>
+          resolve(err ? {} : JSON.parse(data)[name])
+        );
+      })
+  );
   config.addShortcode(
     'icon',
     (name) => `
@@ -71,20 +76,21 @@ module.exports = (config) => {
             collapseBooleanAttributes: true,
             removeRedundantAttributes: true,
             removeScriptTypeAttributes: true,
-            removeStyleLinkTypeAttributes: true,
+            removeStyleLinkTypeAttributes: true
           })
         : content
     );
   }
 
+  // Make eleventy aware of the manifest file
+  config.addWatchTarget(manifestPath);
+
   // BrowserSync Overrides
   config.setBrowserSyncConfig({
     ...config.browserSyncConfig,
-    // Reload when manifest file is changed
-    files: [manifestPath],
     // Show 404 page without redirect to 404.html
     callbacks: {
-      ready: function (err, browserSync) {
+      ready: (err, browserSync) => {
         const fourOFour = fs.readFileSync('_site/404.html');
         browserSync.addMiddleware('*', (req, res) => {
           res.write(fourOFour);
