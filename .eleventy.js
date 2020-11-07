@@ -15,7 +15,7 @@ module.exports = (config) => {
 
   // Allow for customizing the built in markdown parser
   // We add more natural line breaks and anchor tag for headers
-  const markdown = markdownIt({ html: true, breaks: true })
+  const markdown = markdownIt({ html: true, breaks: true, typographer: true })
     .use(markdownItAttributes)
     .use(markdownItAnchor);
   config.setLibrary('md', markdown);
@@ -88,11 +88,11 @@ module.exports = (config) => {
   // BrowserSync Overrides
   config.setBrowserSyncConfig({
     ...config.browserSyncConfig,
-    // Show 404 page without redirect to 404.html
+    // Show 404 page on invalid urls
     callbacks: {
       ready: (err, browserSync) => {
-        const fourOFour = fs.readFileSync('_site/404.html');
         browserSync.addMiddleware('*', (req, res) => {
+          const fourOFour = fs.readFileSync('_site/404.html');
           res.write(fourOFour);
           res.end();
         });
