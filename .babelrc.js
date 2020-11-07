@@ -17,10 +17,6 @@ module.exports = (api) =>
         ]
       }
     : {
-        // Allow to debug without `__WEBPACK_IMPORTED...` weird names
-        plugins: [
-          ['transform-es2015-modules-commonjs-simple', { noMangle: true }]
-        ],
         // Only transforms new dev syntax like optional chaining
         // or nullish coalescing
         presets: ['@babel/env']

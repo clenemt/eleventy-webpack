@@ -15,7 +15,7 @@
     <meta property="og:site_name" content="{{ name or site.name }}" />
     <meta property="og:description" content="{{ description or site.description }}" />
 
-    {% include "webpack.njk" %}
+    <link rel="stylesheet" href="{% webpack 'main.css' %}">
   </head>
   <body class="{{ bodyClass }}">
     {# Add the spritesheet #}
@@ -28,5 +28,6 @@
     <footer>
       <p><a href="{{ site.url }}">{% icon "github" %}eleventy-webpack</a> - <time datetime="{{ page.date | htmlDateString }}">{{ page.date | readableDate }}</time></p>
     </footer>
+    <script async defer src="{% webpack 'main.js' %}"></script>
   </body>
 </html>

@@ -43,13 +43,8 @@ That's it.
 
 ## eli5 (explain like i'm 5)
 
-Webpack is used when:
-
-1. Any changes to `assets/scripts` or `assets/styles` is watched and rebuilt by webpack.
-1. The new files are appended to the ignored file `_includes/webpack.njk` thanks to [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin).
-1. Eleventy sees the new `_includes/webpack.njk` and rebuild.
-
-Any other changes is picked up normally by Eleventy (see [.eleventy.js](.eleventy.js))
+1. Any `.css` or `.js` triggers an update of `manifest.json` (thanks to [webpack-manifest-plugin](https://github.com/shellscape/webpack-manifest-plugin)).
+1. Eleventy sees the change and update (thanks to a custom filter imported in `default.njk`).
 
 ## Shortcodes
 

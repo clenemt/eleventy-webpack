@@ -1,6 +1,5 @@
 # Build results
 _site/
-src/_includes/webpack.njk
 
 # Visual Studio
 .vscode/

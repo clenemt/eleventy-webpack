@@ -5,9 +5,9 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = WebpackMerge.merge(dev, {
   mode: 'production',
-  watch: false,
   devtool: 'source-map',
-  output: { filename: '[hash].js' },
+  stats: { colors: true, preset: 'minimal', performance: true },
+  output: { filename: '[name].[contenthash].js' },
   optimization: {
     minimizer: [
       new TerserPlugin(),

@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 const yaml = require('js-yaml');
 const htmlmin = require('html-minifier');
 const markdownIt = require('markdown-it');
@@ -10,16 +11,17 @@ const { format } = require('date-fns');
 const iconsprite = require('./iconsprite');
 
 module.exports = (config) => {
+  const manifestPath = path.resolve(__dirname, '_site/assets/manifest.json');
+  const manifest = JSON.parse(
+    fs.readFileSync(manifestPath, { encoding: 'utf8' })
+  );
+
   // Allow for customizing the built in markdown parser
   // We add more natural line breaks and anchor tag for headers
   const markdown = markdownIt({ html: true, breaks: true })
     .use(markdownItAttributes)
     .use(markdownItAnchor);
   config.setLibrary('md', markdown);
-
-  // Needed to prevent eleventy from ignoring changes to `webpack.njk`
-  // since it is in our `.gitignore`
-  config.setUseGitIgnore(false);
 
   // Allow eleventy to understand yaml files
   // mostly because we want comments support in data file.
@@ -46,6 +48,7 @@ module.exports = (config) => {
   );
 
   // Shortcodes
+  config.addShortcode('webpack', (name) => manifest[name]);
   config.addPairedShortcode('markdown', (content) => markdown.render(content));
   config.addNunjucksAsyncShortcode('iconsprite', iconsprite);
   config.addShortcode(
@@ -62,12 +65,13 @@ module.exports = (config) => {
     config.addTransform('html-min', (content, outputPath) =>
       outputPath && outputPath.endsWith('.html')
         ? htmlmin.minify(content, {
-            collapseWhitespace: true,
+            html5: true,
             removeComments: true,
+            collapseWhitespace: true,
+            collapseBooleanAttributes: true,
             removeRedundantAttributes: true,
             removeScriptTypeAttributes: true,
             removeStyleLinkTypeAttributes: true,
-            useShortDoctype: true
           })
         : content
     );
@@ -76,6 +80,8 @@ module.exports = (config) => {
   // BrowserSync Overrides
   config.setBrowserSyncConfig({
     ...config.browserSyncConfig,
+    // Reload when manifest file is changed
+    files: [manifestPath],
     // Show 404 page without redirect to 404.html
     callbacks: {
       ready: function (err, browserSync) {
