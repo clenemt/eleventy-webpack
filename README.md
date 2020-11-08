@@ -14,9 +14,9 @@ A barebone [eleventy](https://www.11ty.dev/) and [webpack](https://webpack.js.or
 - `.css` (Sass, PostCSS, Autoprefixer)
 - :white_check_mark: Optimized for production (source maps, headers, minified code...)
 - :robot: SEO metadata and Open Graph tags
-- :camera_flash: Serve remote images locally ([eleventy-plugin-local-images](https://github.com/robb0wen/eleventy-plugin-local-images))
+- :camera_flash: Responsive images and cached remote images ([@11ty/eleventy-img](https://github.com/11ty/eleventy-img))
 - :art: [Prettier](https://prettier.io/) for formatting
-- :memo: Useful shortcodes and filters (date, markdown, svg sprite)
+- :memo: Useful shortcodes and filters (date, markdown, sprite icons, responsive images...)
 - :package: SVG icon sprite generation
 - :shipit: Neat error overlay ([eleventy-plugin-error-overlay](https://github.com/stevenpetryk/eleventy-plugin-error-overlay))
 
@@ -39,28 +39,27 @@ Then you can:
 | **`npm run format`**  | Run prettier on all filles except `/_site`    |
 | **`npm run analyze`** | Output info on your bundle size               |
 
-That's it.
 
-## eli5 (explain like i'm 5)
+## Webpack
 
-1. Any `.css` or `.js` triggers an update of `manifest.json` (thanks to [webpack-manifest-plugin](https://github.com/shellscape/webpack-manifest-plugin)).
-1. Eleventy sees the change and update (thanks to a custom filter imported in `default.njk`).
+A very simple `webpack.config.js` is included. Feel free to change it.
 
 ## Shortcodes
+
+All shortcodes can be used inside `.md` or `.njk` files.
 
 <details>
 <summary><strong><code>icon</code> shortcode</strong></summary>
 <br>
 
 Any SVG added to `src/assets/icons` is bundled into a symbol sprite file and made available through this shortcode.
-<picture>
-    <source type="image/png" srcset="/assets/images/fb244960.png 200w" sizes="(min-width: 1024px) 1024px, 100vw">
-<source type="image/webp" srcset="/assets/images/fb244960.webp 200w" sizes="(min-width: 1024px) 1024px, 100vw">
-    <img loading="lazy" src="/assets/images/fb244960.png" alt="The possum is Eleventy’s mascot" width="200" height="363">
-    </picture>
 ```html
-<!--  Assuming `src/assets/icons/github.svg` exist -->
+<!-- Assuming `src/assets/icons/github.svg` exist -->
 <p>{% icon "github" %} Github icon</p>
+<!-- Will be rendered as -->
+<svg class="icon icon--github" role="img" aria-hidden="true">
+  <use xlink:href="/assets/images/sprite.svg#github"></use>
+</svg>
 ```
 ___
 </details>
@@ -72,12 +71,12 @@ ___
 Will create a WebP version of the image (assuming it is not already) and the corresponding JPEG / PNG. Both will be created in multiple sensible sizes (assuming the image is big enough).
 
 ```html
-<!--  Assuming `src/assets/images/mountains.jpeg` of width 338px exist -->
+<!-- Assuming `src/assets/images/mountains.jpeg` of width 338px exist -->
 {% image "mountains.jpeg", "Picture of someone on top of a mountain" %}
-<!--  Will be rendered as -->
+<!-- Will be rendered as -->
 <picture>
-  <source type="image/png" srcset="/assets/images/678868de-320.png 320w, /assets/images/678868de.png 338w" sizes="(min-width: 1024px) 1024px, 100vw">
-  <source type="image/webp" srcset="/assets/images/678868de-320.webp 320w, /assets/images/678868de.webp 338w" sizes="(min-width: 1024px) 1024px, 100vw">
+  <source type="image/png" srcset="/assets/images/678868de-320.png 320w, /assets/images/678868de.png 338w" sizes="90vw, (min-width: 1280px) 1152px">
+  <source type="image/webp" srcset="/assets/images/678868de-320.webp 320w, /assets/images/678868de.webp 338w" sizes="90vw, (min-width: 1280px) 1152px">
   <img loading="lazy" src="/assets/images/678868de-320.png" alt="Picture of someone on top of a mountain" width="320" height="580">
 </picture>
 ```
@@ -88,13 +87,47 @@ ___
 <summary><strong><code>markdown</code> paired shortcode</strong></summary>
 <br>
 
-Embed markdown inside your Nunjucks templates.
+Embed markdown inside your `.njk` files.
 
 ```html
 {% markdown %}
 Let's you use **Markdown** like _this_.
 Or with includes {%- include 'content.md' -%}.
 {% endmarkdown %}
+```
+___
+</details>
+
+## Filters
+
+All filters can be used inside `.md` or `.njk` files.
+
+<details>
+<summary><strong><code>htmlDate</code></strong></summary>
+<br>
+
+Transform the passed date to a valid html date:
+
+```html
+<!-- Assuming page.date is a javascript date -->
+{{ page.date | htmlDate }}
+<!-- Will be rendered as -->
+2020-11-03
+```
+___
+</details>
+
+<details>
+<summary><strong><code>readableDate</code></strong></summary>
+<br>
+
+Transform the passed date to a human readable date:
+
+```html
+<!-- Assuming page.date is a javascript date -->
+{{ page.date | readableDate }}
+<!-- Will be rendered as -->
+03 Nov 2020
 ```
 ___
 </details>

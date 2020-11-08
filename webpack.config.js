@@ -11,9 +11,9 @@ module.exports = {
   mode: isDev ? 'development' : 'production',
   stats: {
     colors: true,
-    preset: 'minimal',
-    ...(!isDev && { performance: true })
+    preset: 'minimal'
   },
+  performance: { hints: isDev ? false : 'warning' },
   // Eval does not work for css source maps
   // `All values enable source map generation except eval and false value.`
   // https://github.com/webpack-contrib/css-loader

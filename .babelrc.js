@@ -10,8 +10,7 @@ module.exports = (api) =>
               useBuiltIns: 'usage',
               corejs: { version: 3 },
               shippedProposals: true,
-              bugfixes: true,
-              debug: true
+              bugfixes: true
             }
           ]
         ]

@@ -8,25 +8,26 @@ const ErrorOverlay = require('eleventy-plugin-error-overlay');
 const markdownItAnchor = require('markdown-it-anchor');
 const markdownItAttributes = require('markdown-it-attrs');
 const { format } = require('date-fns');
-const iconsprite = require('./iconsprite');
 
 module.exports = (config) => {
   const manifestPath = path.resolve(__dirname, '_site/assets/manifest.json');
 
-  // Allow for customizing the built in markdown parser
-  // We add more natural line breaks and anchor tag for headers
   const markdown = markdownIt({ html: true, breaks: true, typographer: true })
     .use(markdownItAttributes)
     .use(markdownItAnchor);
+
+  // Allow for customizing the built in markdown parser.
+  // We add more natural line breaks anchor tag for headings
+  // and attribute properties
   config.setLibrary('md', markdown);
 
   // Allow eleventy to understand yaml files
-  // mostly because we want comments support in data file.
   config.addDataExtension('yml', (contents) => yaml.safeLoad(contents));
 
   // Pass-through files
   config.addPassthroughCopy('src/_headers');
   config.addPassthroughCopy('src/favicon.ico');
+  // Everything inside static is copied verbatim to `_site`
   config.addPassthroughCopy('src/assets/static');
 
   // Plugins
@@ -41,7 +42,6 @@ module.exports = (config) => {
 
   // Shortcodes
   config.addPairedShortcode('markdown', (content) => markdown.render(content));
-  config.addNunjucksAsyncShortcode('iconsprite', iconsprite);
   config.addNunjucksAsyncShortcode(
     'webpack',
     (name) =>
@@ -53,14 +53,18 @@ module.exports = (config) => {
   );
   config.addShortcode(
     'icon',
-    (name) => `
-<svg class="icon icon--${name}" role="img" aria-hidden="true" width="24" height="24">
-  <use xlink:href="#icon-${name}"></use>
-</svg>`
+    (name) => `<svg class="icon icon--${name}" role="img" aria-hidden="true">
+    <use xlink:href="/assets/images/sprite.svg#${name}"></use>
+  </svg>`
   );
   config.addNunjucksAsyncShortcode(
     'image',
-    async (src, alt, sizes = '(min-width: 1024px) 1024px, 100vw') => {
+    async (
+      src,
+      alt,
+      sizes = '90vw, (min-width: 1280px) 1152px',
+      lazy = true
+    ) => {
       const extension = path.extname(src).slice(1).toLowerCase();
       const isFullUrl = (url) => {
         try {
@@ -76,14 +80,13 @@ module.exports = (config) => {
         {
           widths: [1920, 1280, 640, 320],
           formats:
-            extension === 'webp' ? ['jpeg', 'webp'] : [extension, 'webp'],
+            extension === 'webp' ? ['webp', 'jpeg'] : ['webp', extension],
           urlPath: '/assets/images/',
           outputDir: '_site/assets/images/'
         }
       );
 
       const fallback = stats[extension][0];
-
       return `<picture>
     ${Object.values(stats)
       .map(
@@ -93,7 +96,7 @@ module.exports = (config) => {
             .join(', ')}" sizes="${sizes}">`
       )
       .join('\n')}
-    <img loading="lazy" src="${fallback.url}" width="${
+    <img loading="${lazy ? 'lazy' : 'eager'}" src="${fallback.url}" width="${
         fallback.width
       }" height="${fallback.height}" alt="${alt}">
     </picture>

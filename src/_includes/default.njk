@@ -18,9 +18,6 @@
     <link rel="stylesheet" href="{% webpack 'main.css' %}">
   </head>
   <body class="{{ bodyClass }}">
-    {# Add the spritesheet #}
-    <div hidden>{% iconsprite %}</div>
-
     <main>
       {{ content | safe }}
     </main>
