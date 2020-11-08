@@ -3,7 +3,7 @@ const path = require('path');
 const yaml = require('js-yaml');
 const htmlmin = require('html-minifier');
 const markdownIt = require('markdown-it');
-const localImages = require('eleventy-plugin-local-images');
+const Image = require('@11ty/eleventy-img');
 const ErrorOverlay = require('eleventy-plugin-error-overlay');
 const markdownItAnchor = require('markdown-it-anchor');
 const markdownItAttributes = require('markdown-it-attrs');
@@ -27,16 +27,11 @@ module.exports = (config) => {
   // Pass-through files
   config.addPassthroughCopy('src/_headers');
   config.addPassthroughCopy('src/favicon.ico');
-  config.addPassthroughCopy('src/assets/images');
+  config.addPassthroughCopy('src/assets/static');
 
   // Plugins
   // Shows error name, message, and fancy stacktrace
   config.addPlugin(ErrorOverlay);
-  // Grab all external images used on the site and put them locally
-  config.addPlugin(localImages, {
-    distPath: '_site',
-    assetPath: 'assets/images/remote'
-  });
 
   // Filters
   config.addFilter('readableDate', (dateObj) => format(dateObj, 'dd LLL yyyy'));
@@ -62,6 +57,48 @@ module.exports = (config) => {
 <svg class="icon icon--${name}" role="img" aria-hidden="true" width="24" height="24">
   <use xlink:href="#icon-${name}"></use>
 </svg>`
+  );
+  config.addNunjucksAsyncShortcode(
+    'image',
+    async (src, alt, sizes = '(min-width: 1024px) 1024px, 100vw') => {
+      const extension = path.extname(src).slice(1).toLowerCase();
+      const isFullUrl = (url) => {
+        try {
+          new URL(url);
+          return true;
+        } catch {
+          return false;
+        }
+      };
+
+      let stats = await Image(
+        isFullUrl(src) ? src : `src/assets/images/${src}`,
+        {
+          widths: [1920, 1280, 640, 320],
+          formats:
+            extension === 'webp' ? ['jpeg', 'webp'] : [extension, 'webp'],
+          urlPath: '/assets/images/',
+          outputDir: '_site/assets/images/'
+        }
+      );
+
+      const fallback = stats[extension][0];
+
+      return `<picture>
+    ${Object.values(stats)
+      .map(
+        (image) =>
+          `<source type="image/${image[0].format}" srcset="${image
+            .map((entry) => `${entry.url} ${entry.width}w`)
+            .join(', ')}" sizes="${sizes}">`
+      )
+      .join('\n')}
+    <img loading="lazy" src="${fallback.url}" width="${
+        fallback.width
+      }" height="${fallback.height}" alt="${alt}">
+    </picture>
+  `;
+    }
   );
 
   // Transforms

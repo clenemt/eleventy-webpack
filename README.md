@@ -53,10 +53,33 @@ That's it.
 <br>
 
 Any SVG added to `src/assets/icons` is bundled into a symbol sprite file and made available through this shortcode.
-
+<picture>
+    <source type="image/png" srcset="/assets/images/fb244960.png 200w" sizes="(min-width: 1024px) 1024px, 100vw">
+<source type="image/webp" srcset="/assets/images/fb244960.webp 200w" sizes="(min-width: 1024px) 1024px, 100vw">
+    <img loading="lazy" src="/assets/images/fb244960.png" alt="The possum is Eleventy’s mascot" width="200" height="363">
+    </picture>
 ```html
 <!--  Assuming `src/assets/icons/github.svg` exist -->
 <p>{% icon "github" %} Github icon</p>
+```
+___
+</details>
+
+<details>
+<summary><strong><code>image</code> shortcode</strong></summary>
+<br>
+
+Will create a WebP version of the image (assuming it is not already) and the corresponding JPEG / PNG. Both will be created in multiple sensible sizes (assuming the image is big enough).
+
+```html
+<!--  Assuming `src/assets/images/mountains.jpeg` of width 338px exist -->
+{% image "mountains.jpeg", "Picture of someone on top of a mountain" %}
+<!--  Will be rendered as -->
+<picture>
+  <source type="image/png" srcset="/assets/images/678868de-320.png 320w, /assets/images/678868de.png 338w" sizes="(min-width: 1024px) 1024px, 100vw">
+  <source type="image/webp" srcset="/assets/images/678868de-320.webp 320w, /assets/images/678868de.webp 338w" sizes="(min-width: 1024px) 1024px, 100vw">
+  <img loading="lazy" src="/assets/images/678868de-320.png" alt="Picture of someone on top of a mountain" width="320" height="580">
+</picture>
 ```
 ___
 </details>

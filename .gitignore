@@ -1,5 +1,6 @@
 # Build results
 _site/
+.cache/
 
 # Visual Studio
 .vscode/
