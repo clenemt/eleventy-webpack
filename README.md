@@ -13,12 +13,12 @@ A barebone [eleventy](https://www.11ty.dev/) and [webpack](https://webpack.js.or
 - `.js` (ES6, Babel, Polyfills)
 - `.css` (Sass, PostCSS, Autoprefixer)
 - :white_check_mark: Optimized for production (source maps, headers, minified code...)
-- :robot: SEO metadata and Open Graph tags
 - :camera_flash: Responsive images and cached remote images ([@11ty/eleventy-img](https://github.com/11ty/eleventy-img))
-- :art: [Prettier](https://prettier.io/) for formatting
-- :memo: Useful shortcodes and filters (date, markdown, sprite icons, responsive images...)
 - :package: SVG icon sprite generation
+- :robot: SEO metadata and Open Graph tags
+- :memo: Useful shortcodes and filters (date, markdown, sprite icons, responsive images...)
 - :shipit: Neat error overlay ([eleventy-plugin-error-overlay](https://github.com/stevenpetryk/eleventy-plugin-error-overlay))
+- :art: [Prettier](https://prettier.io/) for formatting
 
 Live demo https://eleventy-webpack.netlify.app
 
@@ -49,7 +49,7 @@ A very simple `webpack.config.js` is included. Feel free to change it.
 All shortcodes can be used inside `.md` or `.njk` files.
 
 <details>
-<summary><strong><code>icon</code> shortcode</strong></summary>
+<summary><strong><code>icon</code></strong></summary>
 <br>
 
 Any SVG added to `src/assets/icons` is bundled into a symbol sprite file and made available through this shortcode.
@@ -65,10 +65,10 @@ ___
 </details>
 
 <details>
-<summary><strong><code>image</code> shortcode</strong></summary>
+<summary><strong><code>image</code></strong></summary>
 <br>
 
-Will create a WebP version of the image (assuming it is not already) and the corresponding JPEG / PNG. Both will be created in multiple sensible sizes (assuming the image is big enough).
+Creates a WebP version of the image (assuming it is not already) and the corresponding JPEG / PNG. Both will be created with sensible sizes (assuming the image is big enough).
 
 ```html
 <!-- Assuming `src/assets/images/mountains.jpeg` of width 338px exist -->
@@ -84,10 +84,10 @@ ___
 </details>
 
 <details>
-<summary><strong><code>markdown</code> paired shortcode</strong></summary>
+<summary><strong><code>markdown</code></strong></summary>
 <br>
 
-Embed markdown inside your `.njk` files.
+Embed markdown easily.
 
 ```html
 {% markdown %}
