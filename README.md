@@ -4,7 +4,7 @@ A barebone [eleventy](https://www.11ty.dev/) and [webpack](https://webpack.js.or
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/c952af3b-547a-40a6-a999-a7966a846b2c/deploy-status)](https://app.netlify.com/sites/eleventy-webpack/deploys)
 
-![](https://user-images.githubusercontent.com/447956/82975961-e47f6680-9fab-11ea-9c5c-cdfb6ef2932c.png)
+[![](https://user-images.githubusercontent.com/447956/82975961-e47f6680-9fab-11ea-9c5c-cdfb6ef2932c.png)](https://eleventy-webpack.netlify.app)
 
 ## Features
 
@@ -103,31 +103,31 @@ ___
 All filters can be used inside `.md` or `.njk` files.
 
 <details>
-<summary><strong><code>htmlDate</code></strong></summary>
+<summary><strong><code>log</code></strong></summary>
 <br>
 
-Transform the passed date to a valid html date:
+Output the passed object to the console:
 
 ```html
 <!-- Assuming page.date is a javascript date -->
-{{ page.date | htmlDate }}
+{{ page.date | log }}
 <!-- Will be rendered as -->
-2020-11-03
+2020-11-05T11:44:29.834Z
 ```
 ___
 </details>
 
 <details>
-<summary><strong><code>readableDate</code></strong></summary>
+<summary><strong><code>formatDate</code></strong></summary>
 <br>
 
-Transform the passed date to a human readable date:
+Format the passed date with [date-fns](https://date-fns.org/v2.16.1/docs/format):
 
 ```html
 <!-- Assuming page.date is a javascript date -->
-{{ page.date | readableDate }}
+{{ page.date | formatDate("yyyy") }}
 <!-- Will be rendered as -->
-03 Nov 2020
+2020
 ```
 ___
 </details>

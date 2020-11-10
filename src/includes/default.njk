@@ -23,7 +23,7 @@
     </main>
 
     <footer>
-      <p><a href="{{ site.url }}">{% icon "github" %}eleventy-webpack</a> - <time datetime="{{ page.date | htmlDateString }}">{{ page.date | readableDate }}</time></p>
+      <p><a href="{{ site.url }}">{% icon "github" %}eleventy-webpack</a> - <time datetime="{{ page.date | formatDate("yyyy") }}">{{ page.date | formatDate("dd LLL yyyy") }}</time></p>
     </footer>
     <script async defer src="{% webpack 'main.js' %}"></script>
   </body>
