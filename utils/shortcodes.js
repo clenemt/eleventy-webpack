@@ -54,7 +54,7 @@ module.exports = {
         outputDir: '_site/assets/images/'
       });
     } catch (e) {
-      console.log('\n\x1b[31mError creating image:\x1b[0m');
+      console.log('\n\x1b[31mERROR\x1b[0m creating image:');
       console.log(`> (${fullSrc})`);
       console.log(`  ${e}\n`);
       return '';

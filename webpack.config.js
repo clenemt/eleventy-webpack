@@ -23,7 +23,8 @@ module.exports = {
     path.resolve(__dirname, 'src/assets/styles/index.scss')
   ],
   output: {
-    filename: isDev ? '[name].js' : '[name].[contenthash].js',
+    filename: isDev ? '[name].[ext]' : '[name].[contenthash].[ext]',
+    assetModuleFilename: isDev ? 'images/[name].[ext]' : 'images/[contenthash].[ext]',
     path: path.resolve(__dirname, '_site/assets'),
     publicPath: '/assets/'
   },
@@ -64,15 +65,7 @@ module.exports = {
       },
       {
         test: /\.(png|jpe?g|gif|svg)$/i,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: isDev ? '[name].[ext]' : '[contenthash].[ext]',
-              outputPath: 'images'
-            }
-          }
-        ]
+        type: 'asset'
       }
     ]
   }

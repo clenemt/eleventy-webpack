@@ -30,7 +30,6 @@
     "css-loader": "^5.0.1",
     "date-fns": "^2.16.1",
     "eleventy-plugin-error-overlay": "^0.1.2",
-    "file-loader": "^6.2.0",
     "html-minifier": "^4.0.0",
     "js-yaml": "^3.14.0",
     "markdown-it": "^12.0.2",

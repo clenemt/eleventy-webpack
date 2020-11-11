@@ -23,7 +23,9 @@ main {
   flex-grow: 1;
   align-items: center;
 
-  img { width: 6rem; }
+  img {
+    width: 6rem;
+  }
 }
 
 img {
@@ -35,7 +37,7 @@ img {
   display: inline-block;
   height: 1em;
   width: 1em;
-  margin-right: .25em;
+  margin-right: 0.25em;
   vertical-align: middle;
   font-size: 1.5em;
   fill: currentColor;
