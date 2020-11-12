@@ -2,7 +2,7 @@
 <html class="{{ htmlClass }}" lang="{{ site.lang }}">
   <head>
     <meta charset="utf-8">
-    <title>{{ title or site.title or site.name }}</title>
+    <title>{% if title %}{{ title }} · {{ site.title }}{% else %}{{ site.title or site.name}}{% endif %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="{{ description or site.description }}">
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -23,7 +23,7 @@
     </main>
 
     <footer>
-      <p><a href="{{ site.url }}">{% icon "github" %}eleventy-webpack</a> - <time datetime="{{ page.date | formatDate("yyyy") }}">{{ page.date | formatDate("dd LLL yyyy") }}</time></p>
+      <p><a href="{{ site.url }}">{% icon "github" %}eleventy-webpack</a> - <time datetime="{{ build.timestamp | formatDate("yyyy") }}">{{ build.timestamp | formatDate("dd LLL yyyy") }}</time></p>
     </footer>
     <script async defer src="{% webpack 'main.js' %}"></script>
   </body>
