@@ -103,21 +103,6 @@ ___
 All filters can be used inside `.md` or `.njk` files.
 
 <details>
-<summary><strong><code>log</code></strong></summary>
-<br>
-
-Output the passed object to the console:
-
-```html
-<!-- Assuming page.date is a javascript date -->
-{{ page.date | log }}
-<!-- Will be rendered as -->
-2020-11-05T11:44:29.834Z
-```
-___
-</details>
-
-<details>
 <summary><strong><code>formatDate</code></strong></summary>
 <br>
 

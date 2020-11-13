@@ -24,7 +24,6 @@ module.exports = (config) => {
   config.addPlugin(ErrorOverlayPlugin);
 
   // Filters
-  config.addFilter('log', filters.log);
   config.addFilter('formatDate', filters.formatDate);
 
   // Shortcodes
