@@ -68,17 +68,29 @@ ___
 <summary><strong><code>image</code></strong></summary>
 <br>
 
-Creates a WebP version of the image (assuming it is not already) and the corresponding JPEG / PNG. Both will be created with sensible sizes (assuming the image is big enough).
+Creates a WebP version of the image (assuming it is not already) and the corresponding optimized JPEG / PNG / SVG. Both will be created with sensible sizes (assuming the image is big enough).
 
 ```html
-<!-- Assuming `src/assets/images/mountains.jpeg` of width 338px exist -->
-{% image "mountains.jpeg", "Picture of someone on top of a mountain" %}
+<!-- Assuming `src/assets/images/image.jpeg` of width 330px exist -->
+{% image "image.jpeg", "Image alt" %}
 <!-- Will be rendered as -->
 <picture>
-  <source type="image/png" srcset="/assets/images/678868de-320.png 320w, /assets/images/678868de.png 338w" sizes="90vw, (min-width: 1280px) 1152px">
-  <source type="image/webp" srcset="/assets/images/678868de-320.webp 320w, /assets/images/678868de.webp 338w" sizes="90vw, (min-width: 1280px) 1152px">
-  <img loading="lazy" src="/assets/images/678868de-320.png" alt="Picture of someone on top of a mountain" width="320" height="580">
+  <source type="image/webp" srcset="/assets/images/678868de-320.webp 320w, /assets/images/678868de.webp 330w" sizes="90vw, (min-width: 1280px) 1152px">
+  <source type="image/png" srcset="/assets/images/678868de-320.png 320w, /assets/images/678868de.png 330w" sizes="90vw, (min-width: 1280px) 1152px">
+  <img loading="lazy" src="/assets/images/678868de.png" alt="Image alt" width="330" height="580">
 </picture>
+
+<!-- If a title is passed the shortcode will output a <figure> with <figcaption> -->
+{% image "image.jpeg", "Image alt", "Image title" %}
+<!-- Will be rendered as -->
+<figure>
+  <picture>
+    <source type="image/webp" srcset="/assets/images/678868de-320.webp 320w, /assets/images/678868de.webp 330w" sizes="90vw, (min-width: 1280px) 1152px">
+    <source type="image/png" srcset="/assets/images/678868de-320.png 320w, /assets/images/678868de.png 330w" sizes="90vw, (min-width: 1280px) 1152px">
+    <img loading="lazy" src="/assets/images/678868de.png" alt="Image alt" width="330" height="580">
+  </picture>
+  <figcaption>Image title</figcaption>
+</figure>
 ```
 ___
 </details>
@@ -103,16 +115,46 @@ ___
 All filters can be used inside `.md` or `.njk` files.
 
 <details>
-<summary><strong><code>formatDate</code></strong></summary>
+<summary><strong><code>format</code></strong></summary>
 <br>
 
 Format the passed date with [date-fns](https://date-fns.org/v2.16.1/docs/format):
 
 ```html
 <!-- Assuming page.date is a javascript date -->
-{{ page.date | formatDate("yyyy") }}
+{{ page.date | format("yyyy") }}
 <!-- Will be rendered as -->
 2020
+```
+___
+</details>
+
+<details>
+<summary><strong><code>formatISO</code></strong></summary>
+<br>
+
+Format the passed date according to [ISO format](https://date-fns.org/v2.16.1/docs/formatISO):
+
+```html
+<!-- Assuming page.date is a javascript date -->
+{{ page.date | formatISO }}
+<!-- Will be rendered as -->
+2020-09-18T19:00:52Z
+```
+___
+</details>
+
+<details>
+<summary><strong><code>markdown</code></strong></summary>
+<br>
+
+Parse the passed string with markdown:
+
+```html
+<!-- Assuming page.title is `# My header` -->
+{{ page.title | markdown }}
+<!-- Will be rendered as -->
+<h1>My header</h1>
 ```
 ___
 </details>

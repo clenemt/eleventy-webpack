@@ -1,5 +1,8 @@
-const { format } = require('date-fns');
+const { format, formatISO } = require('date-fns');
+const markdown = require('./markdown');
 
 module.exports = {
-  formatDate: (dateObj, dateFormat) => format(dateObj, dateFormat)
+  format: format,
+  formatISO: formatISO,
+  markdown: (content) => markdown.renderInline(content)
 };
