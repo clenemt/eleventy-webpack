@@ -4,8 +4,9 @@ const { outdent } = require('outdent');
 const Image = require('@11ty/eleventy-img');
 const markdown = require('./markdown');
 
-const defaultSizes = '90vw, (min-width: 1280px) 1152px';
-const defaultImagesSizes = [1920, 1280, 640, 320];
+const iconDefaultSize = 24;
+const defaultSizesAttr = '90vw';
+const imageDefaultSizes = [1920, 1280, 640, 320];
 
 const isFullUrl = (url) => {
   try {
@@ -34,11 +35,18 @@ module.exports = {
     }),
 
   // Allow embedding svg icon
-  // {% icon "github.svg", "my-class" %}
-  icon: (name, className = '') =>
-    `<svg class="icon icon--${name} ${className}" role="img" aria-hidden="true">
+  // {% icon "github.svg", "my-class", [24, 24] %}
+  icon: (name, className, size = iconDefaultSize) => {
+    if (!Array.isArray(size)) size = [size];
+    return outdent({ newline: '' })`
+    <svg class="icon icon--${name} ${
+      className || ''
+    }" role="img" aria-hidden="true" width="${size[0]}" height="${
+      size[1] || size[0]
+    }">
       <use xlink:href="/assets/images/sprite.svg#${name}"></use>
-    </svg>`,
+    </svg>`;
+  },
 
   // Allow embedding responsive images
   // {% image "mountains.jpeg", "Picture of someone on top of a mountain", "My image caption", "my-class" %}
@@ -48,7 +56,7 @@ module.exports = {
     title,
     className,
     lazy = true,
-    sizes = defaultSizes
+    sizes = defaultSizesAttr
   ) => {
     const extension = path.extname(src).slice(1).toLowerCase();
     const fullSrc = isFullUrl(src) ? src : `./src/assets/images/${src}`;
@@ -56,7 +64,7 @@ module.exports = {
     let stats;
     try {
       stats = await Image(fullSrc, {
-        widths: defaultImagesSizes,
+        widths: imageDefaultSizes,
         formats: extension === 'webp' ? ['webp', 'jpeg'] : ['webp', extension],
         urlPath: '/assets/images/',
         outputDir: '_site/assets/images/'
@@ -69,7 +77,8 @@ module.exports = {
     }
 
     const fallback = stats[extension].reverse()[0];
-    const picture = `<picture>
+    const picture = outdent({ newline: '' })`
+    <picture>
       ${Object.values(stats)
         .map(
           (image) =>
@@ -86,7 +95,7 @@ module.exports = {
         height="${fallback.height}" alt="${alt}">
     </picture>`;
     return title
-      ? `<figure>
+      ? outdent({ newline: '' })`<figure>
           ${picture}
           <figcaption>${markdown.renderInline(title)}</figcaption>
         </figure>`

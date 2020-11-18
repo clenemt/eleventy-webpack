@@ -16,6 +16,7 @@ A barebone [eleventy](https://www.11ty.dev/) and [webpack](https://webpack.js.or
 - :camera_flash: Responsive images and cached remote images ([@11ty/eleventy-img](https://github.com/11ty/eleventy-img))
 - :package: SVG icon sprite generation
 - :robot: SEO metadata and Open Graph tags
+- :link: Safe external links (`noopener` and `noreferrer`)
 - :memo: Useful shortcodes and filters (date, markdown, sprite icons, responsive images...)
 - :shipit: Neat error overlay ([eleventy-plugin-error-overlay](https://github.com/stevenpetryk/eleventy-plugin-error-overlay))
 - :art: [Prettier](https://prettier.io/) for formatting
@@ -68,15 +69,15 @@ ___
 <summary><strong><code>image</code></strong></summary>
 <br>
 
-Creates a WebP version of the image (assuming it is not already) and the corresponding optimized JPEG / PNG / SVG. Both will be created with sensible sizes (assuming the image is big enough).
+Creates a WebP version of the image and the corresponding optimized JPEG / PNG. Images will be created in multiple sizes. See `utils/shortcodes.js` for default values.
 
 ```html
 <!-- Assuming `src/assets/images/image.jpeg` of width 330px exist -->
 {% image "image.jpeg", "Image alt" %}
 <!-- Will be rendered as -->
 <picture>
-  <source type="image/webp" srcset="/assets/images/678868de-320.webp 320w, /assets/images/678868de.webp 330w" sizes="90vw, (min-width: 1280px) 1152px">
-  <source type="image/png" srcset="/assets/images/678868de-320.png 320w, /assets/images/678868de.png 330w" sizes="90vw, (min-width: 1280px) 1152px">
+  <source type="image/webp" srcset="/assets/images/678868de-320.webp 320w, /assets/images/678868de.webp 330w" sizes="90vw">
+  <source type="image/png" srcset="/assets/images/678868de-320.png 320w, /assets/images/678868de.png 330w" sizes="90vw">
   <img loading="lazy" src="/assets/images/678868de.png" alt="Image alt" width="330" height="580">
 </picture>
 
@@ -85,8 +86,8 @@ Creates a WebP version of the image (assuming it is not already) and the corresp
 <!-- Will be rendered as -->
 <figure>
   <picture>
-    <source type="image/webp" srcset="/assets/images/678868de-320.webp 320w, /assets/images/678868de.webp 330w" sizes="90vw, (min-width: 1280px) 1152px">
-    <source type="image/png" srcset="/assets/images/678868de-320.png 320w, /assets/images/678868de.png 330w" sizes="90vw, (min-width: 1280px) 1152px">
+    <source type="image/webp" srcset="/assets/images/678868de-320.webp 320w, /assets/images/678868de.webp 330w" sizes="90vw">
+    <source type="image/png" srcset="/assets/images/678868de-320.png 320w, /assets/images/678868de.png 330w" sizes="90vw">
     <img loading="lazy" src="/assets/images/678868de.png" alt="Image alt" width="330" height="580">
   </picture>
   <figcaption>Image title</figcaption>

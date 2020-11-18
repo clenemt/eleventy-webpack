@@ -28,14 +28,16 @@ module.exports = (config) => {
     config.addFilter(key, filters[key]);
   });
 
+  // Transforms
+  Object.keys(transforms).forEach((key) => {
+    config.addTransform(key, transforms[key]);
+  });
+
   // Shortcodes
   config.addShortcode('icon', shortcodes.icon);
   config.addPairedShortcode('markdown', shortcodes.markdown);
   config.addNunjucksAsyncShortcode('image', shortcodes.image);
   config.addNunjucksAsyncShortcode('webpack', shortcodes.webpack);
-
-  // Transforms
-  config.addTransform('html-min', transforms.htmlmin);
 
   // Pass-through files
   config.addPassthroughCopy('src/_headers');
