@@ -1,9 +1,9 @@
 const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
 const PostCSSPresetEnv = require('postcss-preset-env');
-const ManifestPlugin = require('webpack-manifest-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 
 const isDev = process.env.NODE_ENV !== 'production';
 
@@ -28,7 +28,7 @@ module.exports = {
     publicPath: '/assets/'
   },
   plugins: [
-    new ManifestPlugin(),
+    new WebpackManifestPlugin(),
     new MiniCssExtractPlugin({
       filename: isDev ? '[name].css' : '[name].[contenthash].css'
     })
@@ -37,9 +37,7 @@ module.exports = {
     optimization: {
       minimizer: [
         new TerserPlugin(),
-        new OptimizeCssAssetsPlugin({
-          cssProcessorOptions: { map: true }
-        })
+        new CssMinimizerPlugin()
       ]
     }
   }),

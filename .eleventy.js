@@ -19,8 +19,8 @@ module.exports = (config) => {
   config.addDataExtension('yml', (contents) => yaml.safeLoad(contents));
 
   // Plugins
-  // Shows error name, message, and fancy stacktrace
   config.addPlugin(NavigationPlugin);
+  // Shows error name, message, and fancy stacktrace
   config.addPlugin(ErrorOverlayPlugin);
 
   // Filters
@@ -70,6 +70,8 @@ module.exports = (config) => {
     // Allow nunjucks, markdown and 11ty files to be processed
     templateFormats: ['njk', 'md', '11ty.js'],
     htmlTemplateEngine: 'njk',
+    // Allow pre-processing `.md` files with nunjucks
+    // thus transforming the shortcodes
     markdownTemplateEngine: 'njk'
   };
 };

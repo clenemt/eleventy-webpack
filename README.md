@@ -56,7 +56,7 @@ All shortcodes can be used inside `.md` or `.njk` files.
 Any SVG added to `src/assets/icons` is bundled into a symbol sprite file and made available through this shortcode.
 ```html
 <!-- Assuming `src/assets/icons/github.svg` exist -->
-<p>{% icon "github" %} Github icon</p>
+{% icon "github" %} Github icon
 <!-- Will be rendered as -->
 <svg class="icon icon--github" role="img" aria-hidden="true">
   <use xlink:href="/assets/images/sprite.svg#github"></use>
@@ -89,6 +89,18 @@ Creates a WebP version of the image and the corresponding optimized JPEG / PNG. 
     <source type="image/webp" srcset="/assets/images/678868de-320.webp 320w, /assets/images/678868de.webp 330w" sizes="90vw">
     <source type="image/png" srcset="/assets/images/678868de-320.png 320w, /assets/images/678868de.png 330w" sizes="90vw">
     <img loading="lazy" src="/assets/images/678868de.png" alt="Image alt" width="330" height="580">
+  </picture>
+  <figcaption>Image title</figcaption>
+</figure>
+
+<!-- Additional options -->
+{% image [100,100], "image.jpeg", "Image alt", "Image title", "my-class", false, "90vw" %}
+<!-- Will be rendered as -->
+<figure class="fig-my-class">
+  <picture>
+    <source type="image/webp" srcset="..." sizes="90vw">
+    <source type="image/png" srcset="..." sizes="90vw">
+    <img class="img-my-class" loading="eager" src="..." alt="Image alt" width="100" height="100">
   </picture>
   <figcaption>Image title</figcaption>
 </figure>
