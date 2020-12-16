@@ -40,6 +40,15 @@ Then you can:
 | **`npm run format`**  | Run prettier on all filles except `/_site`    |
 | **`npm run analyze`** | Output info on your bundle size               |
 
+Make sure you use the correct node.js version:
+
+```sh
+# with bash nvm 
+nvm use `cat .nvmrc`
+# with windows nvm
+nvm use $(cat .nvmrc)
+# or just install the version specified inside `.nvmrc`
+```
 
 ## Webpack
 
