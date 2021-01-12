@@ -103,7 +103,7 @@ module.exports = {
     </picture>`;
     return title
       ? outdent({ newline: '' })`
-      <figure class="${className ? `fig-${className}` : ''}"
+      <figure class="${className ? `fig-${className}` : ''}">
         ${picture}
         <figcaption>${markdown.renderInline(title)}</figcaption>
       </figure>`
